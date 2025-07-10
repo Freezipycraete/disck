@@ -1,0 +1,388 @@
+/* Genel ve Temel Stiller */
+:root {
+    --background-color: #1e1f22;
+    --surface-color: #2b2d31;
+    --text-color: #dcddde;
+    --border-color: #40444b;
+    --primary-color: #5865f2;
+    --primary-hover-color: #4752c4;
+    --secondary-color: #4f545c;
+    --secondary-hover-color: #5d636b;
+    --danger-color: #da373c;
+    --danger-hover-color: #a82b30;
+    --green-color: #3ba55d;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+.antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--surface-color);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Header */
+.header {
+    background-color: var(--surface-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    padding: 0.75rem 0;
+}
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.logo-img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+}
+.logo-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+}
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Ana İçerik */
+.main-content {
+    padding: 1.5rem 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+@media (min-width: 1024px) {
+    .main-content {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.controls-panel, .preview-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Panel Hover Efekti */
+.embed-builder, .discord-preview {
+    transition: all 0.2s ease-in-out;
+}
+.embed-builder:hover, .discord-preview:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Form Elemanları */
+.label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+.input-field {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 8px 10px;
+    color: var(--text-color);
+    width: 100%;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+}
+/* Input Odaklanma Efekti */
+.input-field:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.2);
+}
+textarea.input-field {
+    resize: vertical;
+}
+
+.control-group {
+    margin-bottom: 1rem;
+}
+.embed-builder {
+    background-color: var(--surface-color);
+    padding: 1rem;
+    border-radius: 8px;
+}
+.section-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+@media (min-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.color-picker-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.color-picker {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: transparent;
+}
+.timestamp-group {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+}
+.checkbox {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 4px;
+    background-color: var(--border-color);
+    border: 1px solid var(--border-color);
+}
+.checkbox-label {
+    margin-left: 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Dil Değiştirici */
+.language-switcher-wrapper {
+    position: relative;
+}
+.language-switcher {
+    appearance: none;
+    cursor: pointer;
+    padding-right: 2rem;
+}
+.language-switcher-icon {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Buton Stilleri */
+.btn {
+    padding: 10px 16px;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+    display: inline-block;
+    transition: all 0.2s ease-in-out;
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+.btn-primary:hover {
+    background-color: var(--primary-hover-color);
+}
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+.btn-secondary:hover {
+    background-color: var(--secondary-hover-color);
+}
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+.btn-danger:hover {
+    background-color: var(--danger-hover-color);
+}
+
+/* --- YENİ --- Destek sunucusu butonu daha da küçültüldü */
+.btn-small {
+    padding: 4px 10px; /* İç boşluk azaltıldı */
+    font-size: 0.8rem; /* Yazı boyutu küçültüldü (yaklaşık 13px) */
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+}
+.action-buttons .btn {
+    width: 100%;
+}
+
+/* Önizleme Alanı */
+.discord-preview {
+    background-color: var(--surface-color);
+    border-radius: 8px;
+    padding: 1rem;
+}
+.discord-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+.avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+}
+.message-body {
+    flex: 1;
+}
+.message-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+.username {
+    font-weight: 700;
+    color: white;
+}
+.bot-timestamp {
+    font-size: 0.75rem;
+    color: #a3a6aa;
+}
+.message-content {
+    margin-top: 0.25rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.embed-preview-container {
+    margin-top: 0.5rem;
+}
+.discord-embed {
+    background-color: var(--background-color);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 4px;
+    max-width: 520px;
+}
+.embed-content {
+    padding: 1rem;
+}
+.embed-author {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.embed-author-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+}
+.embed-author-name {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: white;
+}
+.embed-title {
+    font-weight: 700;
+    color: white;
+    margin-bottom: 0.25rem;
+}
+.embed-description {
+    font-size: 0.875rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.embed-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: #a3a6aa;
+}
+.embed-footer-icon {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+}
+
+/* Bildirim */
+.notification {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    background-color: var(--green-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: opacity 0.3s, transform 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.notification.error {
+    background-color: var(--danger-color);
+}
+
+/* Yardımcı Sınıflar */
+.hidden {
+    display: none !important;
+}
+

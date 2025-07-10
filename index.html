@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dsick - Discord Mesaj Oluşturucu</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" xintegrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo-container">
+                <img src="image.png" alt="Dsick Logo" class="logo-img">
+                <h1 class="logo-text">Dsick</h1>
+            </div>
+            <div class="header-actions">
+                <!-- YENİ: "btn-small" sınıfı eklendi -->
+                <a href="https://discord.gg/a4D3dGbUGZ" target="_blank" class="btn btn-secondary btn-small" data-lang="supportServer">Destek Sunucusu</a>
+                <div class="language-switcher-wrapper">
+                    <select id="language-switcher" class="input-field language-switcher">
+                        <option value="tr">Türkçe</option>
+                        <option value="en">English</option>
+                    </select>
+                    <i class="fas fa-chevron-down language-switcher-icon"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Ana İçerik (Değişiklik yok) -->
+    <main class="container main-content">
+        <!-- Kontrol Paneli -->
+        <div class="controls-panel">
+            <div class="control-group">
+                <label for="webhook-url" class="label" data-lang="webhookUrl">Webhook URL</label>
+                <input type="text" id="webhook-url" class="input-field" placeholder="Webhook URL'nizi buraya yapıştırın...">
+            </div>
+            <div class="control-group">
+                <label for="message-content" class="label" data-lang="messageContent">Mesaj İçeriği</label>
+                <textarea id="message-content" rows="4" class="input-field" placeholder="Mesajınızı buraya yazın..."></textarea>
+            </div>
+            
+            <!-- Embed Oluşturucu -->
+            <div class="embed-builder">
+                <h2 class="section-title" data-lang="embedBuilder">Gömülü Mesaj Oluşturucu</h2>
+                
+                <div class="form-grid">
+                    <div class="control-group">
+                        <label for="embed-title" class="label" data-lang="embedTitle">Başlık</label>
+                        <input type="text" id="embed-title" class="input-field">
+                    </div>
+                    <div class="control-group">
+                        <label for="embed-color" class="label" data-lang="embedColor">Renk</label>
+                        <div class="color-picker-group">
+                            <input type="color" id="embed-color" value="#5865f2" class="color-picker">
+                            <input type="text" id="embed-color-hex" class="input-field" value="#5865f2">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="embed-description" class="label" data-lang="embedDescription">Açıklama</label>
+                    <textarea id="embed-description" rows="5" class="input-field" placeholder="Markdown kullanabilirsiniz..."></textarea>
+                </div>
+
+                <div class="form-grid">
+                    <div class="control-group">
+                        <label for="embed-author" class="label" data-lang="embedAuthor">Yazar</label>
+                        <input type="text" id="embed-author" class="input-field" placeholder="Yazar adı">
+                    </div>
+                    <div class="control-group">
+                        <label for="embed-author-icon" class="label" data-lang="embedAuthorIcon">Yazar İkon URL</label>
+                        <input type="text" id="embed-author-icon" class="input-field">
+                    </div>
+                </div>
+                 <div class="form-grid">
+                    <div class="control-group">
+                        <label for="embed-footer" class="label" data-lang="embedFooter">Altbilgi</label>
+                        <input type="text" id="embed-footer" class="input-field" placeholder="Altbilgi metni">
+                    </div>
+                    <div class="control-group">
+                        <label for="embed-footer-icon" class="label" data-lang="embedFooterIcon">Altbilgi İkon URL</label>
+                        <input type="text" id="embed-footer-icon" class="input-field">
+                    </div>
+                </div>
+                <div class="timestamp-group">
+                    <input type="checkbox" id="embed-timestamp" class="checkbox">
+                    <label for="embed-timestamp" class="checkbox-label" data-lang="addTimestamp">Zaman Damgası Ekle</label>
+                </div>
+            </div>
+            <div class="action-buttons">
+                <button id="send-message" class="btn btn-primary" data-lang="sendMessage">Mesajı Gönder</button>
+                <button id="reset-fields" class="btn btn-danger" data-lang="resetFields">Temizle</button>
+            </div>
+        </div>
+
+        <!-- Önizleme Alanı -->
+        <div class="preview-panel">
+            <h2 class="section-title" data-lang="preview">Önizleme</h2>
+            <div class="discord-preview">
+                <div class="discord-message">
+                    <img src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar" class="avatar">
+                    <div class="message-body">
+                        <div class="message-header">
+                            <span class="username">Dsick Bot</span>
+                            <span class="bot-timestamp" id="preview-timestamp-bot">Bugün 13:37</span>
+                        </div>
+                        <div id="preview-content" class="message-content"></div>
+                        
+                        <!-- Embed Önizleme -->
+                        <div id="embed-preview-container" class="embed-preview-container hidden">
+                            <div id="preview-embed" class="discord-embed">
+                                <div class="embed-content">
+                                    <div id="preview-embed-author" class="embed-author hidden">
+                                        <img id="preview-embed-author-icon" src="" class="embed-author-icon">
+                                        <span id="preview-embed-author-name" class="embed-author-name"></span>
+                                    </div>
+                                    <div id="preview-embed-title" class="embed-title"></div>
+                                    <div id="preview-embed-description" class="embed-description"></div>
+                                    <div id="preview-embed-footer" class="embed-footer hidden">
+                                        <img id="preview-embed-footer-icon" src="" class="embed-footer-icon">
+                                        <span id="preview-embed-footer-text"></span>
+                                        <span id="preview-embed-timestamp-separator" class="hidden">•</span>
+                                        <span id="preview-embed-timestamp" class="hidden"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <!-- Bildirim Kutusu -->
+            <div id="notification" class="notification">
+                Mesaj başarıyla gönderildi!
+            </div>
+        </div>
+    </main>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
